@@ -1,0 +1,29 @@
+﻿@using DatabaseDemo.Domain.Model
+@model DatabaseDemo.Models.HomeIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Main.cshtml";
+}
+<h2>Input form</h2>
+
+@using (Html.BeginForm("Calculate", "Home", FormMethod.Post, new {@class = "form-inline"}))
+{
+    <div class="form-group">
+        @Html.TextBox("a", @Model.A, new {@class="form-control", placeholder="Value a"})
+    </div>
+    <div class="form-group">
+        @Html.DropDownList("operator", 
+            new[] {
+                new SelectListItem(){Text = "Operator", Value = ""}, 
+                new SelectListItem(){Text = "+", Value = Operator.Plus.ToString(), Selected = @Model.Operator == Operator.Plus}, 
+                new SelectListItem(){Text = "-", Value = Operator.Minus.ToString(), Selected = @Model.Operator == Operator.Minus}, 
+                new SelectListItem(){Text = "*", Value = Operator.Mult.ToString(), Selected = @Model.Operator == Operator.Mult}, 
+                new SelectListItem(){Text = "/", Value = Operator.Div.ToString(), Selected = @Model.Operator == Operator.Div}
+            }, new { @class = "form-control" }
+        )
+        @Html.TextBox("b", @Model.B, new { @class = "form-control", placeholder = "Value b" })
+    </div>
+    <button type="submit" class="btn btn-default">Calculate</button>
+}
+

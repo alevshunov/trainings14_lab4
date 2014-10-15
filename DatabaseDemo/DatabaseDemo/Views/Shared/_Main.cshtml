@@ -1,0 +1,36 @@
+﻿@using DatabaseDemo.Helper
+@{
+    ViewBag.MainMenu = ViewBag.MainMenu is MainMenuItems ? ViewBag.MainMenu : MainMenuItems.None;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    <!-- Bootstrap -->
+    <link href="~/Static/bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <ul class="nav nav-pills pull-right">
+                    <li class="@Html.Raw(ViewBag.MainMenu == MainMenuItems.Home ? "active" : string.Empty)">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="@Html.Raw(ViewBag.MainMenu == MainMenuItems.History ? "active" : string.Empty)">@Html.ActionLink("History", "History", "Home")</li>
+                </ul>
+                <h3 class="text-muted">Calculator</h3>
+            </div>
+            <div>
+                @RenderBody()
+            </div>
+        </div>
+        
+        <script src="~/Static/scripts/jquery-2.1.1.min.js"></script>
+        
+        <script src="~/Static/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+    </body>
+</html>

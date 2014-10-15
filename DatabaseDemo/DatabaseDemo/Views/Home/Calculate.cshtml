@@ -1,0 +1,15 @@
+﻿@model DatabaseDemo.Models.HomeCalculateViewModel
+
+@{
+    ViewBag.Title = "Result";
+    Layout = "~/Views/Shared/_Main.cshtml";
+}
+
+<h2>The result</h2>
+
+<p>
+    @Model.A @Html.Partial("Operator", Model.Operator) @Model.B = @Model.Result
+</p>
+
+@Html.ActionLink("History", "History", "Home")
+@Html.ActionLink("Try again", "Index", "Home", new { preventCookies = true }, null)
